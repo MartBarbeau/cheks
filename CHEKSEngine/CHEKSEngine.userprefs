@@ -1,0 +1,24 @@
+﻿<Properties>
+  <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" />
+  <MonoDevelop.Ide.Workbench ActiveDocument="Agent.cs">
+    <Files>
+      <File FileName="../CHEKSEngineInitializer/MainForm.cs" Line="1" Column="1" />
+      <File FileName="CASystem.cs" Line="1" Column="1" />
+      <File FileName="Agent.cs" Line="4" Column="57" />
+    </Files>
+    <Pads>
+      <Pad Id="ProjectPad">
+        <State expanded="True">
+          <Node name="CHEKSEngine" expanded="True">
+            <Node name="Agent.cs" selected="True" />
+          </Node>
+          <Node name="CHEKSEngineInitializer" expanded="True" />
+        </State>
+      </Pad>
+    </Pads>
+  </MonoDevelop.Ide.Workbench>
+  <MonoDevelop.Ide.DebuggingService.Breakpoints>
+    <BreakpointStore />
+  </MonoDevelop.Ide.DebuggingService.Breakpoints>
+  <MonoDevelop.Ide.DebuggingService.PinnedWatches />
+</Properties>

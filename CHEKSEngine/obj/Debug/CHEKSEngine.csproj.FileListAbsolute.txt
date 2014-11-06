@@ -1,0 +1,9 @@
+E:\Idées\CHEKS\Code\CS\CHEKSEngine\bin\Debug\CHEKSEngine.dll
+E:\Idées\CHEKS\Code\CS\CHEKSEngine\obj\Debug\CHEKSEngine.dll
+D:\Idées\CHEKS\Code\CS\CHEKSEngine\bin\Debug\CHEKSEngine.dll
+D:\Idées\CHEKS\Code\CS\CHEKSEngine\bin\Debug\CHEKSEngine.pdb
+D:\Idées\CHEKS\Code\CS\CHEKSEngine\obj\Debug\CHEKSEngine.csprojResolveAssemblyReference.cache
+D:\Idées\CHEKS\Code\CS\CHEKSEngine\obj\Debug\CHEKSEngine.dll
+D:\Idées\CHEKS\Code\CS\CHEKSEngine\obj\Debug\CHEKSEngine.pdb
+E:\Idées\CHEKS\Code\CS\CHEKSEngine\bin\Debug\CHEKSEngine.xml
+E:\Idées\CHEKS\Code\CS\CHEKSEngine\obj\Debug\CHEKSEngine.csprojResolveAssemblyReference.cache

@@ -1,0 +1,39 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual Studio 2010
+# SharpDevelop 4.3
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHEKSEngine", "CHEKSEngine\CHEKSEngine.csproj", "{6C7E3BC4-171C-4671-BE7C-ADAB62D0A5F0}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHEKSEngineInitializer", "CHEKSEngineInitializer\CHEKSEngineInitializer.csproj", "{599AAEF2-B39D-4136-856A-E202E9ADBC7A}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHEKSVisualizer", "CHEKSVisualizer\CHEKSVisualizer.csproj", "{0D67DAB0-5086-4C0C-B293-A93F43D0FF49}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CHEKSClient", "CHEKSClient\CHEKSClient.csproj", "{60DFA866-3AEA-4F31-B8FF-3801677991B7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{0D67DAB0-5086-4C0C-B293-A93F43D0FF49}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{0D67DAB0-5086-4C0C-B293-A93F43D0FF49}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{0D67DAB0-5086-4C0C-B293-A93F43D0FF49}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{0D67DAB0-5086-4C0C-B293-A93F43D0FF49}.Release|Any CPU.Build.0 = Release|Any CPU
+		{599AAEF2-B39D-4136-856A-E202E9ADBC7A}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{599AAEF2-B39D-4136-856A-E202E9ADBC7A}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{599AAEF2-B39D-4136-856A-E202E9ADBC7A}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{599AAEF2-B39D-4136-856A-E202E9ADBC7A}.Release|Any CPU.Build.0 = Release|Any CPU
+		{60DFA866-3AEA-4F31-B8FF-3801677991B7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{60DFA866-3AEA-4F31-B8FF-3801677991B7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{60DFA866-3AEA-4F31-B8FF-3801677991B7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{60DFA866-3AEA-4F31-B8FF-3801677991B7}.Release|Any CPU.Build.0 = Release|Any CPU
+		{6C7E3BC4-171C-4671-BE7C-ADAB62D0A5F0}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{6C7E3BC4-171C-4671-BE7C-ADAB62D0A5F0}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{6C7E3BC4-171C-4671-BE7C-ADAB62D0A5F0}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{6C7E3BC4-171C-4671-BE7C-ADAB62D0A5F0}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(MonoDevelopProperties) = preSolution
+		StartupItem = CHEKSEngine\CHEKSEngine.csproj
+	EndGlobalSection
+EndGlobal

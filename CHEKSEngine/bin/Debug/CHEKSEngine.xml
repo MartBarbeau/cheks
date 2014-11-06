@@ -1,0 +1,660 @@
+<?xml version="1.0"?>
+<doc>
+    <assembly>
+        <name>CHEKSEngine</name>
+    </assembly>
+    <members>
+        <member name="T:CHEKS.CHEKSEngine.Agent">
+            <summary>
+            <para>Class representing an agent in the system. That agent will interact with other agents, through sets of logics containing relations.</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Agent.#ctor(System.String,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.String})">
+            <summary>
+            <para>Constructor building an agent with the specified parameters.</para>
+            </summary>
+            <param name="nom">Name of the agent.</param>
+            <param name="niveau">Initial level of the agent.</param>
+            <param name="niveauMinimum">Minimum level/Lower limit (numeric representation) of the agent.</param>
+            <param name="niveauMaximum">Maximum level/Lower limit (numeric representation) of the agent.</param>
+            <param name="nombreLogiques">Number of different logic the agent will have.</param>
+            <param name="minimumRelations">Minimum number of relations/interactions in each logic.</param>
+            <param name="maximumRelations">Maximum number of relations/interactions in each logic.</param>
+            <param name="impactMaximum">Maximum impact an interaction should have on another agent.</param>
+            <param name="delaiMaximum">Maximum delai of execution an interaction should have.</param>
+            <param name="listeAgents">List of the names of the agents in the system. Has to be generated first to allow bounding of relations/interactions.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Agent.#ctor(System.Xml.XmlNode)">
+            <summary>
+            <para>Constructor building a system from a definition contained in an xml node</para>
+            </summary>
+            <param name="agentNode">Node containing the agent definition.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Agent.getCurrentLogic">
+            <summary>
+            <para>Get the logic for the current agent's state.</para>
+            </summary>
+            <returns>The logic for the current agent's state.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Agent.getLogic(System.Int32)">
+            <summary>
+            <para>Get the logic for the specified agent's state.</para>
+            </summary>
+            <returns>The logic for the specified agent's state.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Agent.InfluenceAgent(System.Int32,System.String,System.Int32)">
+            <summary>
+            <para>Receive an impact from another agent.</para>
+            </summary>
+            <param name="turn">Delai of execution for the impact.</param>
+            <param name="fromAgent">Name of the agent sending the impact.</param>
+            <param name="points">Value of the impact (can be positive or negative).</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Agent.PrepareToPlay(CHEKS.CHEKSEngine.CASystem)">
+            <summary>
+            <para>Send current logic's impacts to other agents.</para>
+            </summary>
+            <param name="cas">System containing the other agents.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Agent.Play(CHEKS.CHEKSEngine.CASystem)">
+            <summary>
+            <para>Applies the pending impacts that has been previously received.</para>
+            </summary>
+            <param name="cas">System containing the other agents.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Agent.SetState(System.Xml.XmlNode)">
+            <summary>
+            <para>Set the state and pending impacts of the agent.</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Agent.Serialize">
+            <summary>
+            <para>Serialization of the agent.</para>
+            </summary>
+            <returns>Serialization string for the agent.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Agent.SerializeState">
+            <summary>
+            <para>Serialization of the state of the agent.</para>
+            </summary>
+            <returns>Serialization string for the state of the agent.</returns>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Agent.Name">
+            <summary>
+            <para>Name of the agent.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Agent.Min">
+            <summary>
+            <para>Minimum level/Lower limit (numeric representation) of the agent.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Agent.Max">
+            <summary>
+            <para>Maximum level/Lower limit (numeric representation) of the agent.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Agent.Level">
+            <summary>
+            <para>Current level (numeric representation) of the agent.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Agent.LastLevel">
+            <summary>
+            <para>Last level (numeric representation) of the agent.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Agent.Influence">
+            <summary>
+            <para>List of influences/impacts that are pending for the agent.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Agent.Logics">
+            <summary>
+            <para>List of the logics in the agent.</para>
+            </summary>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.CASystem">
+            <summary>
+            <para>Main class of the CHEKSEngine. It contains everything needed to Load, Play and Save a system.
+            It also contains the agents interacting in the system.
+            </para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.#ctor">
+            <summary>
+            <para>Default constructor. Build an empty system with a generated Guid as a name.</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.#ctor(System.String)">
+            <summary>
+            <para>Constructor building a system from a definition contained in a specified file.</para>
+            </summary>
+            <param name="fileName">Complete path to the system definition xml file.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.GenerateCASystem(System.Boolean,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)">
+            <summary>
+            <para>Generate a system from the specified parameters</para>
+            </summary>
+            <param name="utiliserGUID">If true, agents names will be Guid. Otherwise, it will be a counter. Can be useful to save some disk space.</param>
+            <param name="nombreAgents">The number of agents interacting in the system.</param>
+            <param name="minimumRelations">Minimum number of relations an agent should have.</param>
+            <param name="maximumRelations">Maximum number of relations an agent should have.</param>
+            <param name="niveauMinimum">Minimum level/Lower limit (numeric representation) an agent should have.</param>
+            <param name="niveauMaximum">Maximum level/Upper limit (numeric representation) an agent should have.</param>
+            <param name="impactMaximum">Maximum impact an interaction should have on another agent.</param>
+            <param name="delaiMaximum">Maximum delai of execution an interaction should have.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.Load(System.String)">
+            <summary>
+            <para>Load a system from a definition contained in a specified file.</para>
+            </summary>
+            <param name="fileName">Complete path to the system definition xml file.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.Save">
+            <summary>
+            <para>Save the system, including state and upcoming impacts in an xml file. Save to the default systems directory, with the system name as a fileName.</para>
+            </summary>
+            <returns>Returns true if file has been successfully saved.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.SaveState">
+            <summary>
+            <para>Save the state of the system, including agents states and upcoming impacts in an xml file. Save to the default systems directory, with the system name as a fileName.</para>
+            </summary>
+            <returns>Returns true if file has been successfully saved.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.Save(System.String,System.Boolean)">
+            <summary>
+            <para>Save the system, including state and upcoming impacts in an xml file. Save to the specified file.</para>
+            </summary>
+            <param name="fileName">Complete file name or file path. If file path, you have to set addIdToPath to true.</param>
+            <param name="addIdToPath">Specifies if the system must add the system id as a file name.</param>
+            <returns>Returns true if file has been successfully saved.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.SaveState(System.String,System.Boolean)">
+            <summary>
+            <para>Save the state of the system, including agents states and upcoming impacts in an xml file. Save to the specified file.</para>
+            </summary>
+            <param name="fileName">Complete file name or file path. If file path, you have to set addIdToPath to true.</param>
+            <param name="addIdToPath">Specifies if the system must add the system id as a file name.</param>
+            <returns>Returns true if file has been successfully saved.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.Play">
+            <summary>
+            <para>Make the system evolve to its next state (Executions of the relations and impact of each agents).</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.Vectorization(System.Boolean)">
+            <summary>
+            <para>Vectorization of the system.</para>
+            </summary>
+            <param name="toChar">Specifies if the vectorization has to be made with ascii chars or numeric values.</param>
+            <returns>Returns the vectorization of the system (i.e. the state (numeric representation) of each agent, appended in a string. If toChar is set to true, the ascii character will be return if the state is in the range.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.Serialize">
+            <summary>
+            <para>Serialization of the system.</para>
+            </summary>
+            <returns>Serialization string for the system.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.CASystem.SerializeState">
+            <summary>
+            <para>Serialization of the system.</para>
+            </summary>
+            <returns>Serialization string for the system.</returns>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.CASystem.Name">
+            <summary>
+            <para>Name of the system.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.CASystem.CurrentPlay">
+            <summary>
+            <para></para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.CASystem.Agents">
+            <summary>
+            <para>List containing all the agent objects contained in the system.</para>
+            </summary>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.MessageStates">
+            <summary>
+            <para>List of possible states for a message.</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.MessageStates.Success">
+            <summary>
+            <para>Indicates that the message was successfully sent.</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.MessageStates.Failed">
+            <summary>
+            <para>Indicates that the message failed to send.</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.MessageStates.Pooled">
+            <summary>
+            <para>Indicates that the message was pooled.</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.MessageStates.None">
+            <summary>
+            <para>Indicates that the message has no state.</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.MessageStates.Empty">
+            <summary>
+            <para>Indicates that the message was empty.</para>
+            </summary>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.Message">
+            <summary>
+            <para>CHEKS Message object, containing 0 to x messages.</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.Message.SystemId">
+            <summary>
+            <para>Id of the system that will receive the message.</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.Message.State">
+            <summary>
+            <para>State of the message.</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Message.#ctor(System.String,CHEKS.CHEKSEngine.MessageStates)">
+            <summary>
+            <para>Constructor building a new message from specified parameters.</para>
+            </summary>
+            <param name="systemId">Id of the system that will receive the message.</param>
+            <param name="state">Initial state of the message.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Message.#ctor(System.String)">
+            <summary>
+            <para>Constructor building a new message from a serialization string.</para>
+            </summary>
+            <param name="serialization">String containing the serialization.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Message.AddContent(System.String)">
+            <summary>
+            <para>Add content to the message</para>
+            </summary>
+            <param name="messageContent">Content to be added to the message.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Message.RemoveContent(System.String)">
+            <summary>
+            <para>Remove content to the message</para>
+            </summary>
+            <param name="messageContent">Content to be removed to the message.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Message.Serialize">
+            <summary>
+            <para>Serialization of the message.</para>
+            </summary>
+            <returns>Serialization string for the message.</returns>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Message.Content">
+            <summary>
+            <para>Concatenation of all the contents in the message.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Message.ContentList">
+            <summary>
+            <para>List of all the content strings in the message.</para>
+            </summary>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.InternalSendMessageDelegate">
+            <summary>
+            <para>Delegate for the internal methods required by the selected CHEKS pattern.</para>
+            </summary>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.OnSendMessageDelegate">
+            <summary>
+            <para>Delegate for the message sending (TCP, DB, etc) method in the application using the library.</para>
+            </summary>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.CHEKSPattern">
+            <summary>
+            <para>CHEKS usage patterns</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.CHEKSPattern.SingleSystem">
+            <summary>
+            <para>Single System Patern.</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.CHEKSPattern.DualSystems">
+            <summary>
+            <para>Dual Systems Patern.</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.CHEKSPattern.ElectronicKey1">
+            <summary>
+            <para>Electronic Key Patern #1.</para>
+            </summary>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.MessageDelivery">
+            <summary>
+            <para>Class responsible to manage the sending and receiving of messages using TCP/IP, including encryption and systems evolutions.</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageDelivery.#ctor(CHEKS.CHEKSEngine.CHEKSPattern,System.String,System.String,CHEKS.CHEKSEngine.OnSendMessageDelegate)">
+            <summary>
+            <para>Constructor building a MessageDelivery object from specified parameters.</para>
+            </summary>
+            <param name="pattern">CHEKS usage pattern to be used.</param>
+            <param name="sender">Sender system id.</param>
+            <param name="receiver">Receiver system id.</param>
+            <param name="sendMessage">Delegate that will handle the message sending (via TCP, DB, etc).</param>
+            <exception cref="T:System.Exception">Raise exceptions if sender system, receiver system or sendMessage delegate is missing.</exception>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageDelivery.SendMessageSingleSystem(System.String)">
+            <summary>
+            <para>Send message delegate for the single system pattern.</para>
+            </summary>
+            <param name="messageText">Text to be sent.</param>
+            <returns>Message object indicating the state of the transaction</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageDelivery.SendMessageDualSystems(System.String)">
+            <summary>
+            <para>Send message delegate for the dual systems pattern.</para>
+            </summary>
+            <param name="messageText">Text to be sent.</param>
+            <returns>Message object indicating the state of the transaction</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageDelivery.SendNexMessage">
+            <summary>
+            <para>Send the next message in queue when using the single system pattern.</para>
+            </summary>
+            <returns>Message object indicating the state of the transaction</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageDelivery.ReceiveMessageSingleSystem(System.String)">
+            <summary>
+            <para>Message reception delegate for the single system pattern.</para>
+            </summary>
+            <param name="message">Text message received to be decrypted.</param>
+            <returns>Message object containing the decrypted message and the state of the transaction.</returns>
+            <exception cref="T:System.Exception">Exception raised when unable to receive the message properly.</exception>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageDelivery.ReceiveMessageDualSystems(System.String)">
+            <summary>
+            <para>Message reception delegate for the dual systems pattern.</para>
+            </summary>
+            <param name="message">Text message received to be decrypted.</param>
+            <returns>Message object containing the decrypted message and the state of the transaction.</returns>
+            <exception cref="T:System.Exception">Exception raised when unable to receive the message properly.</exception>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageDelivery.SendMessageElectronicKey1(System.String)">
+            <summary>
+            <para>NOT IMPLEMENTED YET</para>
+            </summary>
+            <param name="message"></param>
+            <returns>Message Object</returns>
+            <exception cref="T:System.Exception">Not implemented yet.</exception>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.MessageDelivery.onSendMessage">
+            <summary>
+            <para>Delegate that will handle the message sending (via TCP, DB, etc) in the application using the library.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.MessageDelivery.SendMessage">
+            <summary>
+            <para>Delegate that will handle the message sending for the selected pattern.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.MessageDelivery.ReceiveMessage">
+            <summary>
+            <para>Delegate that will handle the message reception for the selected pattern.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.MessageDelivery.SenderSystem">
+            <summary>
+            <para>System that will be used to send messages.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.MessageDelivery.ReceiverSystem">
+            <summary>
+            <para>System that will be used to receive messages.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.MessageDelivery.OutMessagePool">
+            <summary>
+            <para>Message pool for single system patterns and when messages can't be sent. Has to be handle outside the library if required.</para>
+            </summary>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.Logic">
+            <summary>
+            <para>Logic containing relations/impacts for an agent's given state.</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Logic.#ctor(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Collections.Generic.List{System.String})">
+            <summary>
+            <para>Constructor building a system from specified parameters.</para>
+            </summary>
+            <param name="minimum">Agent's minimum level/Lower limit where the logic/set of relations applies.</param>
+            <param name="maximum">Agent's maximum level/Upper limit where the logic/set of relations applies.</param>
+            <param name="nombreRelation">Number of relations/impacts the logic shoud have.</param>
+            <param name="impactMaximum">Maximum impact an interaction should have on another agent.</param>
+            <param name="delaiMaximum">Maximum delai of execution an interaction should have.</param>
+            <param name="listeAgents">List of the names of the agents in the system. Has to be generated first to allow bounding of relations/interactions.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Logic.#ctor(System.Xml.XmlNode)">
+            <summary>
+            <para>Constructor building a system from a definition contained in an xml node.</para>
+            </summary>
+            <param name="logicNode">Node containing the logic definition.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Logic.Serialize">
+            <summary>
+            <para>Serialization of the logic.</para>
+            </summary>
+            <returns>Serialization string for the logic.</returns>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Logic.Min">
+            <summary>
+            <para>Agent's minimum level/Lower limit where the logic/set of relations applies.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Logic.Max">
+            <summary>
+            <para>Agent's maximum level/Upper limit where the logic/set of relations applies.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Logic.Self">
+            <summary>
+            <para>Auto impact on the agent.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Logic.Relations">
+            <summary>
+            <para>List of the relation objects contained in the logic.</para>
+            </summary>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.MessageItem">
+            <summary>
+            <para>CHEKS message item ibject. Used to manipulate the contents of a message.</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.MessageItem.SystemCheck">
+            <summary>
+            <para>Validation of the system id</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.MessageItem.MessageContent">
+            <summary>
+            <para>Content of the message</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.MessageItem.Request">
+            <summary>
+            <para>Requested action</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageItem.#ctor(System.String,System.String)">
+            <summary>
+            <para>Constructor building a message item with the specified parameters.</para>
+            </summary>
+            <param name="systemCheck">System id that should be used to access the message.</param>
+            <param name="messageContent">Text content of the message.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageItem.#ctor(System.String)">
+            <summary>
+            <para>Constructor building a message item from the specified serialization string.</para>
+            </summary>
+            <param name="serialization">Serialization string to be used to build the object.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageItem.#ctor(System.Xml.XmlNode)">
+            <summary>
+            <para>Constructor building a message item from the specified sxml node.</para>
+            </summary>
+            <param name="node">Node to be used to build the object.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.MessageItem.Serialize">
+            <summary>
+            <para>Serialization of the message item</para>
+            </summary>
+            <returns>Serialization string for the message item</returns>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.Relation">
+            <summary>
+            <para>Class containing a relation and related parameters.</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Relation.#ctor(System.String,System.Single,System.Int32)">
+            <summary>
+            <para>Constructor building a relation with the specified parameters.</para>
+            </summary>
+            <param name="agentImpact">Agent that will be impacted by the relation.</param>
+            <param name="impactMaximum">Maximum impact that will be used in the relation.</param>
+            <param name="delaiMaximum">Maximum application delay for the impact.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Relation.#ctor(System.Xml.XmlNode)">
+            <summary>
+            <para>Constructor building a relation fromh the specified xml node.</para>
+            </summary>
+            <param name="relationNode">Node containing the relation definition.</param>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Relation.Serialize">
+            <summary>
+            <para>Serialization of the relation.</para>
+            </summary>
+            <returns>Serialization string for the relation.</returns>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Relation.ToAgent">
+            <summary>
+            <para></para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Relation.Rate">
+            <summary>
+            <para></para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Relation.Delay">
+            <summary>
+            <para></para>
+            </summary>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.Utilitaires">
+            <summary>
+            <para>Utility methods to help during the system generation and initialization.</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Utilitaires.getRandomInt(System.Int32,System.Int32)">
+            <summary>
+            <para>Return a random integer in the specified range.</para>
+            </summary>
+            <param name="minRange">Minimum integer to return.</param>
+            <param name="maxRange">Maximum integer to return</param>
+            <returns>A random integer in the range.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Utilitaires.getRandomAgent(System.Collections.Generic.List{System.String})">
+            <summary>
+            <para>Get a random agent in the provided agent names list.</para>
+            </summary>
+            <param name="listeAgents">List containing the name of the agents</param>
+            <returns>A random agent name.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Utilitaires.QuarterShot">
+            <summary>
+            <para>Random true or false.</para>
+            </summary>
+            <returns>True or False</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Utilitaires.DoubleDiceShot">
+            <summary>
+            <para>Random 1 out of 12 true or false.</para>
+            </summary>
+            <returns>True or false.</returns>
+        </member>
+        <member name="T:CHEKS.CHEKSEngine.Encrypter">
+            <summary>
+            <para>Class containing all the encryption and decryption method. Also, this class is a singleton, to prevent that 2 instances use the same systems definition and cause unsync.</para>
+            </summary>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Encrypter.Encrypt(System.String,System.String)">
+            <summary>
+            <para>Encrypt a string using the specified system's linearization.</para>
+            </summary>
+            <param name="systemId">Id of the system to be used for encryption.</param>
+            <param name="plainText">Text to encrypt</param>
+            <returns>Encrypted string.</returns>
+            <exception cref="T:System.Exception">Exceptions will be raised if : the system id is missing or if the system is not found.</exception>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Encrypter.Decrypt(System.String,System.String)">
+            <summary>
+            <para>Decrypt a string using the specified system's linearization.</para>
+            </summary>
+            <param name="systemId">Id of the system to be used for decryption.</param>
+            <param name="cipherText">Text to decrypt</param>
+            <returns>Encrypted string.</returns>
+            <exception cref="T:System.Exception">Exceptions will be raised if : the cypherText is empty, the system id is missing or if the system is not found.</exception>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Encrypter.OpenSystem(System.String)">
+            <summary>
+            <para>Open a system and load it in the cache.</para>
+            </summary>
+            <param name="systemId">Id of the system to open.</param>
+            <returns>True if successful.</returns>
+            <exception cref="T:System.Exception">Exception will be raised if the file is corrupted or unloadable.</exception>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Encrypter.CloseSystem(System.String)">
+            <summary>
+            <para>Close a system and clear it from the cache.</para>
+            </summary>
+            <param name="systemId">Id of the system to close.</param>
+            <returns>True if successful.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Encrypter.getVectorization(System.String)">
+            <summary>
+            <para>Get linearisation for the specified system.</para>
+            </summary>
+            <param name="systemId">Id of the system to get the linearization.</param>
+            <returns>Linearization string.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Encrypter.getTruncatedVectorization(System.String)">
+            <summary>
+            <para>Get a truncated linearisation for the specified system (%8).</para>
+            </summary>
+            <param name="systemId">Id of the system to get the linearization.</param>
+            <returns>Linearization string.</returns>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Encrypter.Play(System.String)">
+            <summary>
+            <para>Make the specified system evolve to its next state and save it.</para>
+            </summary>
+            <param name="systemId">Id of the system to make evolve.</param>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Encrypter.Instance">
+            <summary>
+            <para>Get the Encrypter singleton instance.</para>
+            </summary>
+        </member>
+        <member name="P:CHEKS.CHEKSEngine.Encrypter.SystemsDirectory">
+            <summary>
+            <para>Directory containing the systems used for the encryption/decryption.</para>
+            </summary>
+        </member>
+    </members>
+</doc>

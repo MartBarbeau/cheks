@@ -1,0 +1,10 @@
+E:\Idées\CHEKS\Code\CS\CHEKSClient\bin\Debug\CHEKSClient.exe.config
+E:\Idées\CHEKS\Code\CS\CHEKSClient\bin\Debug\CHEKSClient.exe
+E:\Idées\CHEKS\Code\CS\CHEKSClient\bin\Debug\CHEKSClient.pdb
+E:\Idées\CHEKS\Code\CS\CHEKSClient\obj\Debug\CHEKSClient.csprojResolveAssemblyReference.cache
+E:\Idées\CHEKS\Code\CS\CHEKSClient\obj\Debug\CHEKSClient.exe
+E:\Idées\CHEKS\Code\CS\CHEKSClient\obj\Debug\CHEKSClient.pdb
+E:\Idées\CHEKS\Code\CS\CHEKSClient\obj\Debug\CHEKSClient.MainForm.resources
+E:\Idées\CHEKS\Code\CS\CHEKSClient\obj\Debug\CHEKSClient.csproj.GenerateResource.Cache
+E:\Idées\CHEKS\Code\CS\CHEKSClient\bin\Debug\CHEKSEngine.dll
+E:\Idées\CHEKS\Code\CS\CHEKSClient\bin\Debug\CHEKSEngine.xml
