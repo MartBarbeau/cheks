@@ -23,6 +23,10 @@ namespace CHEKS
 			/// <para>Requested action</para>
 			/// </summary>
 			public string Request;
+
+            const string SysCheck = "<systemCheck>";
+            const string MsContent = "<messageContent>";
+            const string RequestTag = "<request>";
 			#endregion
 	
 			#region --- Constructeur ---
@@ -44,9 +48,7 @@ namespace CHEKS
 			/// <param name="serialization">Serialization string to be used to build the object.</param>
 			public MessageItem(string serialization)
 			{
-                string sysCheck = "<systemCheck>";
-                string msContent = "<messageContent>";
-                string request = "<request>";
+               
 
                 if (string.IsNullOrEmpty(serialization))
                 {
@@ -70,21 +72,21 @@ namespace CHEKS
                      * Parser XML custom pour contrer l'injection XML, à refactorer!
                      * 
                      */
-                    if (serialization.Contains(sysCheck))//TODO: voir robustesse
+                    if (serialization.Contains(SysCheck))//TODO: voir robustesse
                     {
                         try
                         {
-                            int indexStartSys = serialization.IndexOf(sysCheck) + sysCheck.Length;
+                            int indexStartSys = serialization.IndexOf(SysCheck) + SysCheck.Length;
                             int indexEndSys = serialization.IndexOf("</systemCheck>");
                             this.SystemCheck =
                                 serialization.Substring(indexStartSys, indexEndSys - indexStartSys);
-                            int indexStartMs = serialization.IndexOf(msContent) + msContent.Length;
+                            int indexStartMs = serialization.IndexOf(MsContent) + MsContent.Length;
                             int indexEndMs = serialization.LastIndexOf("</messageContent>");
                             this.MessageContent =
                                 serialization.Substring(indexStartMs, indexEndMs - indexStartMs);
-                            if (serialization.Contains(request))
+                            if (serialization.Contains(RequestTag))
                             {
-                                int indexStartRq = serialization.LastIndexOf(request) + request.Length;
+                                int indexStartRq = serialization.LastIndexOf(RequestTag) + RequestTag.Length;
                                 int indexEndRq = serialization.LastIndexOf("</request>");
                                 this.Request =
                                     serialization.Substring(indexStartRq, indexEndRq - indexStartRq);
