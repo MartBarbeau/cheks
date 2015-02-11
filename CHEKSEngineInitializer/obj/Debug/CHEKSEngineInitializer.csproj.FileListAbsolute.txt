@@ -18,3 +18,13 @@ D:\Idées\CHEKS\Code\CS\CHEKSEngineInitializer\obj\Debug\CHEKSEngineInitializer.
 D:\Idées\CHEKS\Code\CS\CHEKSEngineInitializer\obj\Debug\CHEKSEngineInitializer.exe
 D:\Idées\CHEKS\Code\CS\CHEKSEngineInitializer\obj\Debug\CHEKSEngineInitializer.pdb
 E:\Idées\CHEKS\Code\CS\CHEKSEngineInitializer\bin\Debug\CHEKSEngine.xml
+C:\dev\cheks\CHEKSEngineInitializer\bin\Debug\CHEKSEngineInitializer.exe.config
+C:\dev\cheks\CHEKSEngineInitializer\bin\Debug\CHEKSEngineInitializer.exe
+C:\dev\cheks\CHEKSEngineInitializer\bin\Debug\CHEKSEngineInitializer.pdb
+C:\dev\cheks\CHEKSEngineInitializer\bin\Debug\CHEKSEngine.dll
+C:\dev\cheks\CHEKSEngineInitializer\bin\Debug\CHEKSEngine.xml
+C:\dev\cheks\CHEKSEngineInitializer\obj\Debug\CHEKSEngineInitializer.csprojResolveAssemblyReference.cache
+C:\dev\cheks\CHEKSEngineInitializer\obj\Debug\CHEKS.CHEKSEngineInitializer.MainForm.resources
+C:\dev\cheks\CHEKSEngineInitializer\obj\Debug\CHEKSEngineInitializer.csproj.GenerateResource.Cache
+C:\dev\cheks\CHEKSEngineInitializer\obj\Debug\CHEKSEngineInitializer.exe
+C:\dev\cheks\CHEKSEngineInitializer\obj\Debug\CHEKSEngineInitializer.pdb

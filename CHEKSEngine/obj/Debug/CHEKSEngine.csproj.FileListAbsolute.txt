@@ -7,3 +7,7 @@ D:\Idées\CHEKS\Code\CS\CHEKSEngine\obj\Debug\CHEKSEngine.dll
 D:\Idées\CHEKS\Code\CS\CHEKSEngine\obj\Debug\CHEKSEngine.pdb
 E:\Idées\CHEKS\Code\CS\CHEKSEngine\bin\Debug\CHEKSEngine.xml
 E:\Idées\CHEKS\Code\CS\CHEKSEngine\obj\Debug\CHEKSEngine.csprojResolveAssemblyReference.cache
+C:\dev\cheks\CHEKSEngine\bin\Debug\CHEKSEngine.xml
+C:\dev\cheks\CHEKSEngine\bin\Debug\CHEKSEngine.dll
+C:\dev\cheks\CHEKSEngine\obj\Debug\CHEKSEngine.csprojResolveAssemblyReference.cache
+C:\dev\cheks\CHEKSEngine\obj\Debug\CHEKSEngine.dll
