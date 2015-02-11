@@ -24,3 +24,16 @@ D:\Idées\CHEKS\Code\CS\CHEKSVisualizer\obj\Debug\CHEKSVisualizer.g.resources
 D:\Idées\CHEKS\Code\CS\CHEKSVisualizer\obj\Debug\CHEKSVisualizer.exe
 D:\Idées\CHEKS\Code\CS\CHEKSVisualizer\obj\Debug\CHEKSVisualizer.pdb
 E:\Idées\CHEKS\Code\CS\CHEKSVisualizer\bin\Debug\CHEKSEngine.xml
+C:\dev\cheks\CHEKSVisualizer\bin\Debug\CHEKSVisualizer.exe.config
+C:\dev\cheks\CHEKSVisualizer\bin\Debug\CHEKSVisualizer.exe
+C:\dev\cheks\CHEKSVisualizer\bin\Debug\CHEKSVisualizer.pdb
+C:\dev\cheks\CHEKSVisualizer\bin\Debug\CHEKSEngine.dll
+C:\dev\cheks\CHEKSVisualizer\bin\Debug\CHEKSEngine.xml
+C:\dev\cheks\CHEKSVisualizer\obj\Debug\CHEKSVisualizer.csprojResolveAssemblyReference.cache
+C:\dev\cheks\CHEKSVisualizer\obj\Debug\Visualizer.baml
+C:\dev\cheks\CHEKSVisualizer\obj\Debug\Visualizer.g.cs
+C:\dev\cheks\CHEKSVisualizer\obj\Debug\App.g.cs
+C:\dev\cheks\CHEKSVisualizer\obj\Debug\CHEKSVisualizer_MarkupCompile.cache
+C:\dev\cheks\CHEKSVisualizer\obj\Debug\CHEKSVisualizer.g.resources
+C:\dev\cheks\CHEKSVisualizer\obj\Debug\CHEKSVisualizer.exe
+C:\dev\cheks\CHEKSVisualizer\obj\Debug\CHEKSVisualizer.pdb

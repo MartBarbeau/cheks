@@ -336,7 +336,7 @@
         </member>
         <member name="T:CHEKS.CHEKSEngine.MessageDelivery">
             <summary>
-            <para>Class responsible to manage the sending and receiving of messages, including encryption and systems evolutions.</para>
+            <para>Class responsible to manage the sending and receiving of messages using TCP/IP, including encryption and systems evolutions.</para>
             </summary>
         </member>
         <member name="M:CHEKS.CHEKSEngine.MessageDelivery.#ctor(CHEKS.CHEKSEngine.CHEKSPattern,System.String,System.String,CHEKS.CHEKSEngine.OnSendMessageDelegate)">
@@ -478,12 +478,17 @@
         </member>
         <member name="F:CHEKS.CHEKSEngine.MessageItem.SystemCheck">
             <summary>
-            <para></para>
+            <para>Validation of the system id</para>
             </summary>
         </member>
         <member name="F:CHEKS.CHEKSEngine.MessageItem.MessageContent">
             <summary>
-            <para></para>
+            <para>Content of the message</para>
+            </summary>
+        </member>
+        <member name="F:CHEKS.CHEKSEngine.MessageItem.Request">
+            <summary>
+            <para>Requested action</para>
             </summary>
         </member>
         <member name="M:CHEKS.CHEKSEngine.MessageItem.#ctor(System.String,System.String)">
@@ -613,6 +618,13 @@
             <param name="systemId">Id of the system to open.</param>
             <returns>True if successful.</returns>
             <exception cref="T:System.Exception">Exception will be raised if the file is corrupted or unloadable.</exception>
+        </member>
+        <member name="M:CHEKS.CHEKSEngine.Encrypter.CloseSystem(System.String)">
+            <summary>
+            <para>Close a system and clear it from the cache.</para>
+            </summary>
+            <param name="systemId">Id of the system to close.</param>
+            <returns>True if successful.</returns>
         </member>
         <member name="M:CHEKS.CHEKSEngine.Encrypter.getVectorization(System.String)">
             <summary>

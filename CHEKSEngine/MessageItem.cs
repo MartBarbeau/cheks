@@ -23,6 +23,10 @@ namespace CHEKS
 			/// <para>Requested action</para>
 			/// </summary>
 			public string Request;
+
+            const string SysCheck = "<systemCheck>";
+            const string MsContent = "<messageContent>";
+            const string RequestTag = "<request>";
 			#endregion
 	
 			#region --- Constructeur ---
@@ -44,20 +48,61 @@ namespace CHEKS
 			/// <param name="serialization">Serialization string to be used to build the object.</param>
 			public MessageItem(string serialization)
 			{
-				if (string.IsNullOrEmpty(serialization)) {
-					this.SystemCheck = "";
-					this.MessageContent = "";
-				} else {
-					XmlDocument xml = new XmlDocument();
-					xml.LoadXml(serialization);
-					if (xml.ChildNodes.Item(0).ChildNodes.Count > 0) {
-						this.SystemCheck = xml.ChildNodes.Item(0).ChildNodes.Item(0).InnerText;
-						this.MessageContent = xml.ChildNodes.Item(0).ChildNodes.Item(1).InnerText;
-						if (xml.ChildNodes.Item(0).ChildNodes.Count == 3) {
-							this.Request = xml.ChildNodes.Item(0).ChildNodes.Item(2).InnerText;
-						}
-					}
-				}
+               
+
+                if (string.IsNullOrEmpty(serialization))
+                {
+                    this.SystemCheck = "";
+                    this.MessageContent = "";
+                }
+                else
+                {
+                    /*
+                    XmlDocument xml = new XmlDocument();
+                    xml.LoadXml(serialization);
+                    if (xml.ChildNodes.Item(0).ChildNodes.Count > 0) {
+                        this.SystemCheck = xml.ChildNodes.Item(0).ChildNodes.Item(0).InnerText;
+                        this.MessageContent = xml.ChildNodes.Item(0).ChildNodes.Item(1).InnerText;
+                        if (xml.ChildNodes.Item(0).ChildNodes.Count == 3) {
+                            this.Request = xml.ChildNodes.Item(0).ChildNodes.Item(2).InnerText;
+                     * }
+                     * */
+
+                    /*
+                     * Parser XML custom pour contrer l'injection XML, à refactorer!
+                     * 
+                     */
+                    if (serialization.Contains(SysCheck))//TODO: voir robustesse
+                    {
+                        try
+                        {
+                            int indexStartSys = serialization.IndexOf(SysCheck) + SysCheck.Length;
+                            int indexEndSys = serialization.IndexOf("</systemCheck>");
+                            this.SystemCheck =
+                                serialization.Substring(indexStartSys, indexEndSys - indexStartSys);
+                            int indexStartMs = serialization.IndexOf(MsContent) + MsContent.Length;
+                            int indexEndMs = serialization.LastIndexOf("</messageContent>");
+                            this.MessageContent =
+                                serialization.Substring(indexStartMs, indexEndMs - indexStartMs);
+                            if (serialization.Contains(RequestTag))
+                            {
+                                int indexStartRq = serialization.LastIndexOf(RequestTag) + RequestTag.Length;
+                                int indexEndRq = serialization.LastIndexOf("</request>");
+                                this.Request =
+                                    serialization.Substring(indexStartRq, indexEndRq - indexStartRq);
+                            }
+                        }
+                        catch (Exception)
+                        {
+
+                            this.SystemCheck = null;
+                            this.MessageContent = null;
+                            this.Request = null;
+                        }
+
+                    }
+
+                }
 			}
 			
 			/// <summary>
